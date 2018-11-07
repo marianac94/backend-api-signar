@@ -3,10 +3,11 @@ const router = express.Router();
 
 
 const Diary = require('../models/diary');
+
  router.get('/', async (req, res, next) => {
-  console.log(req.body, ' this is get all')
      try  {
       const allDiaries = await Diary.find();
+      console.log(allDiaries, ' this is get all')
       res.json({
         status: 200,
         data: allDiaries
@@ -19,25 +20,24 @@ const Diary = require('../models/diary');
 
 
 router.post('/', async (req, res) => {
+  console.log(req.body, ' this is req.body');
   try {
-    console.log(req.body, ' this is req.body');
-    const createdDiary = await Diary.create(req.body);
-    console.log('response happening?')
+    const createDiary = await Diary.create(req.body);
+    console.log(createDiary, 'WORK PLEASE')
     res.json({
       status: 200,
-      data: createdDiary
-    });
+      data: createDiary
+    })
 
-  } catch(err){
-    console.log(err);
-    res.send(err);
+  } catch (err) {
+    res.send(err)
   }
-});
-
+})
 
 router.get('/:id', async (req, res, next) => {
      try  {
         const foundDiary = await Diary.findById(req.params.id);
+        console.log("mariana");
         res.json({
           status: 200,
           data: foundDiary
@@ -52,6 +52,7 @@ router.get('/:id', async (req, res, next) => {
 router.put('/:id', async (req, res) => {
   try {
     const updatedDiary = await Diary.findByIdAndUpdate(req.params.id, req.body, {new: true});
+    console.log("flaw");
     res.json({
       status: 200,
       data: updatedDiary

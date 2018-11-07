@@ -3,6 +3,8 @@ const app            = express();
 const bodyParser     = require('body-parser');
 const cors           = require('cors');
 const session        = require('express-session')
+const diaryController = require('./controllers/diaryController');
+const authController  = require('./controllers/authController');
 
 require('./db/db');
 
@@ -26,8 +28,6 @@ app.use(cors(corsOptions));
 
 
 // Require the controller after the middleware
-const diaryController = require('./controllers/diaryController');
-const authController  = require('./controllers/authController');
 
 app.use('/api/v1/diary', diaryController);
 app.use('/auth/login', authController);

@@ -23,7 +23,6 @@ router.post('/', async (req, res) => {
   console.log(req.body, ' this is req.body');
   try {
     const createDiary = await Diary.create(req.body);
-    console.log(createDiary, 'WORK PLEASE')
     res.json({
       status: 200,
       data: createDiary
